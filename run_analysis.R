@@ -31,6 +31,10 @@ for (i in seq_along(coma$Activity)) {
   if(coma$Activity[i]==1)
     coma$Activity[i]<-"WALKING"
 }
+library(data.table)
+DT<-data.table(coma)
+Tidy<-DT[, lapply(.SD, mean), by= .(Subject,Activity)]
+Tidy<-Tidy[order(Subject,Activity)]
 
 
 
